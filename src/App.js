@@ -1718,15 +1718,15 @@ export default function App() {
   const ferimento = calcularFerimento();
 
   const essenciaisPorCat = useMemo(() => {
-    const essenciais = ficha.inventario?.essenciais || [];
-    const map = new Map();
-    for (const cat of CATS_ESSENCIAIS) map.set(cat.id, []);
-    for (const it of essenciais) {
-      if (!map.has(it.cat)) map.set(it.cat, []);
-      map.get(it.cat).push(it);
-    }
-    return map;
-  }, [ficha.inventario]);
+  const essenciais = ficha.inventario?.essenciais || [];
+  const map = new Map();
+  for (const cat of CATS_ESSENCIAIS) map.set(cat.id, []);
+  for (const it of essenciais) {
+    if (!map.has(it.cat)) map.set(it.cat, []);
+    map.get(it.cat).push(it);
+  }
+  return map;
+}, [ficha.inventario?.essenciais]);
 
   const estaMorto = ficha.vida.atual <= -1;
 
