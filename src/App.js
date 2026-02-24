@@ -1,7 +1,7 @@
-//import { useEffect, useMemo, useRef, useState } from "react";
-//import escudo from "./assets/escudo.png.png";
-//import coracao from "./assets/coracao.png.png";
-//import silhueta from "./assets/Silhueta.png";
+import { useEffect, useMemo, useRef, useState } from "react";
+import escudo from "./assets/escudo.png.png";
+import coracao from "./assets/coracao.png.png";
+import silhueta from "./assets/Silhueta.png";
 
 /* ===== STATUS ===== */
 
@@ -794,7 +794,7 @@ function EquipadoTela({ ficha, setVest, abrirEquipPicker, resolverArma, desequip
       <section
         style={{
           ...styles.eqPanel,
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.86))`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.86)), url(${silhueta})`,
         }}
       >
         <div style={styles.eqPanelHeader}>
@@ -1718,15 +1718,15 @@ export default function App() {
   const ferimento = calcularFerimento();
 
   const essenciaisPorCat = useMemo(() => {
-  const essenciais = ficha.inventario?.essenciais || [];
-  const map = new Map();
-  for (const cat of CATS_ESSENCIAIS) map.set(cat.id, []);
-  for (const it of essenciais) {
-    if (!map.has(it.cat)) map.set(it.cat, []);
-    map.get(it.cat).push(it);
-  }
-  return map;
-}, [ficha.inventario?.essenciais]);
+    const essenciais = ficha.inventario?.essenciais || [];
+    const map = new Map();
+    for (const cat of CATS_ESSENCIAIS) map.set(cat.id, []);
+    for (const it of essenciais) {
+      if (!map.has(it.cat)) map.set(it.cat, []);
+      map.get(it.cat).push(it);
+    }
+    return map;
+  }, [ficha.inventario]);
 
   const estaMorto = ficha.vida.atual <= -1;
 
@@ -1776,7 +1776,7 @@ export default function App() {
               <div style={styles.blocoVida}>
                 <div style={styles.coracaoBox}>
                   <div style={styles.coracaoFrame}>
-                    <div style={{...styles.vidaImgGrande, fontSize: 80, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>❤️</div>
+                    <img src={coracao} alt="Vida" style={styles.vidaImgGrande} />
 
                     <div style={styles.vidaOverlay}>
                       <span style={styles.vidaAtualTopo}>{ficha.vida.atual}</span>
@@ -1812,7 +1812,7 @@ export default function App() {
 
               <div style={styles.blocoCA}>
                 <div style={styles.caWrapper}>
-                  <div style={{...styles.escudoImg, fontSize: 60, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>🛡️</div>
+                  <img src={escudo} alt="CA" style={styles.escudoImg} />
                   <div style={styles.caValor}>{ficha.ca}</div>
                 </div>
 
